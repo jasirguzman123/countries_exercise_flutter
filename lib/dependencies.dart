@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Dependencies {
   static List<RepositoryProvider> mainRepositories() {
     return [
-      RepositoryProvider<CountriesRepository>(create: (_) => CountriesLocal()),
+      RepositoryProvider<CountriesRepository>(create: (_) => CountriesApi()), // Utiliza CountriesApi
       RepositoryProvider<CountriesCubit>(
         create: (context) => CountriesCubit(
           context.read<CountriesRepository>(),

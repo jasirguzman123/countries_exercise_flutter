@@ -1,5 +1,4 @@
-import 'package:http/http.dart';
-
+import 'package:countries_app/data/models/country.dart';
 abstract class CountriesRepository {
-  Future<Response> index();
+  Future<List<Country>> index();
 }

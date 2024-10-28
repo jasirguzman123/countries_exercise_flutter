@@ -1,41 +1,20 @@
 import 'dart:convert';
-
+import 'package:countries_app/data/models/country.dart';
 import 'package:countries_app/data/respositories/countries_repository.dart';
-import 'package:http/src/response.dart';
+import 'package:http/http.dart' as http;
 
-class CountriesLocal implements CountriesRepository {
-  @override
-  Future<Response> index() async {
-    return Response(
-      json.encode([
-        {
-          "name": "Colombia",
-          "currency": "COP",
-          "capital": "Bogotá",
-          "flag": "https://flagcdn.com/w320/gd.png"
-        },
-        {
-          "name": "Colombia",
-          "currency": "COP",
-          "capital": "Bogotá",
-          "flag": "https://flagcdn.com/w320/gd.png"
-        },
-        {
-          "name": "Colombia",
-          "currency": "COP",
-          "capital": "Bogotá",
-          "flag": "https://flagcdn.com/w320/gd.png"
-        },
-      ]),
-      200,
-    );
-  }
-}
 
 class CountriesApi implements CountriesRepository {
   @override
-  Future<Response> index() async {
-    // TODO: implement index
-    throw UnimplementedError();
+  Future<List<Country>> index() async {
+    final response = await http.get(Uri.parse('https://restcountries.com/v3.1/all'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonData = jsonDecode(response.body);
+      final List<Country> countries = jsonData.map<Country>((data) => Country.fromJson(data)).toList();
+      return countries;
+    } else {
+      throw Exception('Failed to load countries');
+    }
   }
 }
