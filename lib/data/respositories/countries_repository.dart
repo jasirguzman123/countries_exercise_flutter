@@ -1,5 +1,4 @@
-import 'package:http/http.dart';
-
+import 'package:http/http.dart' as http;
 abstract class CountriesRepository {
-  Future<Response> index();
-}
+  Future<http.Response> index();
+  }
