@@ -2,10 +2,10 @@ import 'package:countries_app/data/models/country.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class CountryGrid extends StatelessWidget {
+class Country_Grid extends StatelessWidget {
   final List<Country> countries;
 
-  const CountryGrid({Key? key, required this.countries}) : super(key: key);
+  const Country_Grid({Key? key, required this.countries}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class CountryGrid extends StatelessWidget {
         final country = countries[index];
         return GestureDetector(
           onTap: () {
-            context.push('/country-detail', extra: country); // Usa context.push
+            context.push('/country-detail', extra: country);
           },
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -32,6 +32,7 @@ class CountryGrid extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Stack(
+              alignment: Alignment.center,
               children: [
                 Opacity(
                   opacity: 0.3,
@@ -45,26 +46,23 @@ class CountryGrid extends StatelessWidget {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      country.name,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black,
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 4.0,
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    country.name,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 4.0,
+                        ),
+                      ],
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],

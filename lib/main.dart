@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key}); 
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -39,38 +38,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFF292929),
+      backgroundColor: const Color(0xFF292929),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Stack(
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(0, 0),
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        child: Image.asset(
-                          'assets/images/world-logo.png',
-                          width: double.infinity,
-                          height: 235,
-                          fit: BoxFit.cover,
-                        ),
-                    ),
-                    ),
-                  ],
-                ),
-              ],
+          const SizedBox(height: 16.0),  
+          const Text(
+            'Country list',
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.white,
             ),
-          ),
+          )
         ],
       ),
     );

@@ -9,7 +9,7 @@ class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _HomeScreen();
-  }
+  } 
 }
 
 class _HomeScreen extends State<HomeScreen> {
@@ -47,20 +47,20 @@ class _HomeScreen extends State<HomeScreen> {
         children: [
           SearchWidget(controller: _searchController),
           Expanded(
-            child: BlocBuilder<CountriesCubit, List<Country>>(
-              builder: (context, countries) {
-                if (countries.isEmpty) {
+            child: BlocBuilder<CountriesCubit, CountriesResponse>(
+              builder: (context, response) {
+                if (response.countries == null || response.countries!.isEmpty) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
 
-                _allCountries = countries;
+                _allCountries = response.countries!;
                 _filteredCountries = _searchController.text.isEmpty ? _allCountries : _filteredCountries;
 
                 return Padding(
                   padding: EdgeInsets.all(15),
-                  child: CountryGrid(
+                  child: Country_Grid(
                     countries: _filteredCountries,
                   ),
                 );
